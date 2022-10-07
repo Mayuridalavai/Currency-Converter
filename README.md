@@ -2,11 +2,11 @@
 
 In this Project User can find currency details
 
-*list of all creencies
+* list of all creencies
 
-*conversion of currency
+* conversion of currency
 
-*Exchange rate from one currency to other currency
+* Exchange rate from one currency to other currency
 
 ## Getting Started
 
