@@ -1,8 +1,11 @@
 # mycode (Currency Converter)
 
-*In this Project User can find 
+In this Project User can find 
+
 list of all creencies
+
 conversion of currency
+
 Exchange rate from one currency to other currency
 
 ## Getting Started
