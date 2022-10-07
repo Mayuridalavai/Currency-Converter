@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """MDalavai | Currency Converter"""
 
-from locale import currency
+import requests
+import pyfiglet
+import json
+from helper import exchange_rate, list_currencies
 from tkinter import *
 from tkinter import Tk, ttk
-import json
-from tkinter.font import names
-import pyfiglet
-import requests
-from helper import exchange_rate, list_currencies
+import time
+
 
 
 
 # Currency converting and tkinter windohwh
 def convert_window():
-    """Converting currencies"""
+    """Converting currencies and Tkinter window"""
 
     #colors
-    cor0 = "#d7d7d5"
+    cor0 = "#BFD7ED"
     cor1 = "#36454F"
-    cor2 = "#FF5733"
+    cor2 = "#0074B7"
 
 
     #creating the window
@@ -39,6 +39,9 @@ def convert_window():
     
     #create a function convert amount
     def convert():
+        
+        """Currency is converter in this function"""
+        
         url = "https://currency-converter18.p.rapidapi.com/api/v1/convert"
 
         currency1 = combo1.get()
@@ -61,23 +64,15 @@ def convert_window():
         headers = {
 	    "X-RapidAPI-Key": "f28ba617dcmshd66f7ecf9ae61c6p17dd07jsne9a5c2bce5ed",
 	    "X-RapidAPI-Host": "currency-converter18.p.rapidapi.com"
-        }
-    
+        }    
         response = requests.request("GET", url, headers=headers, params=querystring)
         data = json.loads(response.text)
-        converted_amount = data["result"]["convertedAmount"]
-        formatted = symbol + "{:,.2f}".format(converted_amount)
+        convert_amt = data["result"]["convertedAmount"]
+        format_amt = symbol + "{:.2f}".format(convert_amt)
+        result['text'] = format_amt
         
-        result['text'] = formatted
-        
-        print(f"Converted : {converted_amount}, Formatted : {formatted}")
-    
-    
-    
-    #top Frame
-    #icon = Image.open('images/icons8-currency.png')
-    #icon = icon.resize((40,40))
-    
+        print(f"Converted : {convert_amt}, {format_amt}")
+
     app_name = Label(top, text = 'Currency Converter', anchor="center", font=('Arial 16 bold'), bg=cor2, fg=cor0)
     app_name.place(relx ='0.25', rely = '0.2')
     
@@ -97,7 +92,7 @@ def convert_window():
     #to label
     to_label = Label(main_frame, text = "To", width=8, height=1, pady=0, padx=0, relief="flat", anchor=NW, font=('Ivy 15 bold'), bg=cor0, fg=cor1)
     to_label.place(x=250,y=90)
-    combo2 = ttk.Combobox(main, width=8, justify=CENTER, font=("Ivy 12 bold"))
+    combo2 = ttk.Combobox(main_frame, width=8, justify=CENTER, font=("Ivy 12 bold"))
     combo2['values'] = (currency_list)
     combo2.place(x=250, y=115)
     
@@ -109,32 +104,30 @@ def convert_window():
     button = Button(main_frame, text="Converter", width=19, height=1, padx=5, font=('Ivy 12 bold'), bg=cor2, fg=cor0, command=convert)
     button.place(x=95, y=220)
     
-    
     window.mainloop()
     
-
 # main function
 def main():
-    
-    """_Main function to get the user inputs"""
-    welcome = pyfiglet.figlet_format("Welcome to Curency Converter", font = "bubble")
-    print(welcome)
-    user_name = input("Enter your Name: ")
-    print(user_name)
-    print("------------------------------------------------")
-    print("List - lists the different currencies")
-    print("Convert - convert from one currency to another")
-    print("Rate - get the exchange rate of two currencies")
-    print("----------------------------------------------------")
-    print("-----------------------------------------------------")
+    """Main function to get the user inputs"""
+    welcome = pyfiglet.figlet_format("Curency Converter", font = "bubble")
+    print(welcome,flush=True)
+    time.sleep(2)
+    user_name = input("Enter your Name --> ")
+    time.sleep(2)
+    print(f"Hello {user_name}! Welcome to the Currency Converter..\n", end='',flush=True)
+    time.sleep(2)
 
     while True:
-        answer = input("Enter a option from the List above  or  q to quit: ").lower()
-        
-
+        print("------------------------------------------------")
+        print("List - lists the different currencies")
+        print("Convert - convert from one currency to another")
+        print("Rate - get the exchange rate of two currencies")
+        print("---------------------------------------------------- \n")
+        answer = input("Enter a option from the List above  or  q to quit: \n").lower()
+        time.sleep(2)
         if answer == 'q':
             break
-        elif answer == 'list':
+        if answer == 'list':
             list_currencies()
         elif answer == 'convert':
             convert_window()
@@ -144,7 +137,7 @@ def main():
             exchange_rate(currency1, currency2)
 
         else:
-            print("Invalid Entry")
+            print("Sorry! You have not choosen a Valid input")
 
 
     end_messeage = pyfiglet.figlet_format("Thank you! for using Currency Converter", font = "digital")

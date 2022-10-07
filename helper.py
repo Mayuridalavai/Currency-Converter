@@ -11,8 +11,6 @@ def list_currencies():
     """List of Currencies"""
     
     url = "https://api.fastforex.io/currencies?api_key=67f42a4e33-1fcc5e9d1e-rj7nis"
-    #headers = {"accept": "application/json"}
-    #response = requests.get(url, headers=headers)
     data = requests.get(url)
     result = data.json()
     for i in result["currencies"]:
@@ -21,18 +19,11 @@ def list_currencies():
     print("---------------------------------------------------------")    
     print(f"Total Number of Currencies : {len(result['currencies'])}")
     print("---------------------------------------------------------")
-    
-    
-    
-
-
-
+     
 #function exchange rates
 def exchange_rate(currency1, currency2):
-    
     """Exchange rates"""
     url = "https://currency-converter-pro1.p.rapidapi.com/latest-rates"
-    currency1 = "USD"
 
     querystring = { "base":currency1, "currencies":currency2 }
     headers = {
@@ -42,14 +33,8 @@ def exchange_rate(currency1, currency2):
     response = requests.request("GET", url, headers=headers, params=querystring)
     data = json.loads(response.text)
     if len(data) == 0:
-        print('Invalid currencies.')
-        return
+       print('Invalid currencies.')
+       return
 
-    rate = data['result']
+    rate = data.get("result").get(currency2)
     print(f"{currency1} -> {currency2} = {rate}")
-    return rate
-
-
-
-
-
