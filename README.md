@@ -1,7 +1,9 @@
 # mycode (Currency Converter)
 
-One Paragraph of your project description goes here. Describe what you're trying to do.
-What is the purpose of putting up this repo?
+In this Project User can find 
+-list of all creencies
+-conversion of currency
+-Exchange rate from one currency to other currency
 
 ## Getting Started
 
