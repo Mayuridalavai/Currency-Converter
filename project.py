@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """MDalavai | Currency Converter"""
-
-from tkinter import *
-from tkinter import Tk, ttk
+import tkinter as tk
+from tkinter import ttk
+from tkinter import CENTER, SOLID, NW, FALSE
+from tkinter import Frame, Label, Button, Entry
 import json
 import time
 import requests
 import pyfiglet
 from helper import exchange_rate, list_currencies
+
 
 # Currency converting and tkinter windohwh
 def convert_window():
@@ -20,7 +22,7 @@ def convert_window():
 
 
     #creating the window
-    root = Tk()
+    root = tk.Tk()
     root.title('converter')
     root.configure(bg=cor0)
     root.geometry('400x420')
@@ -95,7 +97,7 @@ def main():
     time.sleep(2)
     user_name = input("Enter your Name --> ")
     time.sleep(2)
-    print(f"Hello {user_name}! Welcome to the Currency Converter..\n")
+    print(f"Hello {user_name}! Welcome to the Currency Converter..\n", end='',flush=True)
     time.sleep(2)
 
     while True:
@@ -113,7 +115,7 @@ def main():
         elif answer == 'convert':
             convert_window()
         elif answer == 'rate':
-            currency1 = input("Enter a base currency: ").upper()
+            currency1 = input("Enter a base currency: ").upper
             currency2 = input("Enter a currency to convert to: ").upper()
             exchange_rate(currency1, currency2)
         else:

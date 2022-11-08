@@ -4,7 +4,6 @@
 import json
 import pprint
 import requests
-
 #function to list all currencies
 def list_currencies():
     """List of Currencies"""
@@ -17,7 +16,6 @@ def list_currencies():
     print("---------------------------------------------------------")
     print(f"Total Number of Currencies : {len(result['currencies'])}")
     print("---------------------------------------------------------")
-
 #function exchange rates
 def exchange_rate(currency1, currency2):
     """Exchange rates"""
@@ -34,4 +32,4 @@ def exchange_rate(currency1, currency2):
         print('Invalid currencies.')
         return
     rate = data.get("result").get(currency2)
-    print(f"Exchange Rate : {currency1} -> {currency2} = {rate}")
+    print(f"{currency1} -> {currency2} = {rate}")
