@@ -2,7 +2,7 @@
 
 In this Project User can find currency details
 
-* list of all creencies
+* list of all currencies
 
 * conversion of currency
 
